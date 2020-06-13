@@ -1,9 +1,8 @@
-const express = require("express")
-const cors = require("cors")
-const lowDb = require("lowdb")
-const FileSync = require("lowdb/adapters/FileSync")
-const bodyParser = require("body-parser")
-const { nanoid } = require("nanoid")
+const express = require("express");
+const cors = require("cors");
+const lowDb = require("lowdb");
+const FileSync = require("lowdb/adapters/FileSync");
+const { nanoid } = require("nanoid");
 
 const PORT = 4000;
 const db = lowDb(new FileSync('db.json'));
@@ -12,7 +11,7 @@ const app = express();
 db.defaults({ notes: [] }).write();
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.get('/notes', (req,res) => {
   const data = db.get("notes").value();
